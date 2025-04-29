@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
 :root {
-  --primary-color: #e9615e;
-  --secondary-color: #ec9956;
+  --primary-color: #1D1836;
+  --secondary-color: #383838;
   --extra-light: #f3f4f6;
   --white: #ffffff;
-  --gradient-1: linear-gradient(to bottom right, #62393c, #181e41);
+  --gradient-1: linear-gradient(to bottom right, #030000, #000000);
   --gradient-2: linear-gradient(
     to bottom,
     var(--primary-color),
@@ -110,12 +110,20 @@ nav {
   padding: 9px 12px;
   font-size: 1.2rem;
 }
-
+.nav__bar__content h3{
+  color: #e3bf76;
+}
+.nav__bar__content h4{
+  color: #f8f8f8;
+}
 .nav__bar a {
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--white);
 }
+/* .nav__bar span{
+  color: #FFD700; /* Light Gold */
+/* } */ */
 
 .nav__menu__btn {
   font-size: 1.5rem;
@@ -158,41 +166,56 @@ nav {
 .header__container {
   padding-top: 8rem;
   display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
   gap: 2rem;
   isolation: isolate;
 }
 
 .header__content {
-  text-align: center;
+  text-align: left;
+  /* Remove the old background image */
+  /* background-image: url('/Users/abdullah/Downloads/Personal_Portfolio_28-11-23-main/assets/header.jpg.png'); */
+  /* background-size: cover; */
+  /* background-position: center; */
+  padding: 2rem;
+  border-radius: 1rem;
+  /* Add your textured background here */
+  background-image: url('/Users/abdullah/Downloads/Personal_Portfolio_28-11-23-main/assets/header.jpg.png'); /* <-- Use the path to your dark texture */
+  background-size: cover; /* Or 'repeat' depending on the texture */
+  background-position: center;
 }
 
 
 .header__content h1 {
   margin-bottom: 1rem;
-  text-align: center;
+  text-align: left;
   margin-bottom: 0rem;
 }
 
 .header__content .name {
-  font-size: 5rem; /* Large font size for the name */
-  font-weight: 700; /* Bold text for the name */
+  font-size: 5rem;
+  font-weight: 700;
 }
 
 .header__content .title {
-  font-size: 2rem; /* Smaller font size for the title */
-  font-weight: 500; /* Lighter weight for the title */
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 
 
 .header__content .section__description {
   margin-bottom: 2rem;
+  color: var(--white);
 }
 
 .header__image {
   position: relative;
   isolation: isolate;
   z-index: -1;
+  display: flex;
+  justify-content: center;
 }
 
 .header__image img {
@@ -211,64 +234,50 @@ nav {
   transform: translate(50%, -50%) rotate(90deg);
 }
 
-.about__container {
-  display: grid;
-  gap: 2rem;
-}
-
-.about__image {
-  position: relative;
-  isolation: isolate;
-  max-width: 400px;
-  margin: auto;
-}
-
-.about__img {
-  border-radius: 100%;
-}
-
-.about__bg-1,
-.about__bg-2 {
-  position: absolute;
-  max-width: 150px;
-  z-index: -1;
-}
-
-.about__bg-1 {
-  top: 0;
-  left: 0;
-}
-
-.about__bg-2 {
-  right: 0;
-  bottom: 0;
-}
-
-.about__content {
-  /* color: #0d0101; */
-  text-align: center;
-}
-
-/* Styling for section titles */
-.about__content h2 {
+/* overview Section Layout */
+.overview-section {
+  background-color: #030000;
+  padding: 3rem 1rem;
+  margin-bottom: 4rem;
+  color: #fff;
   text-align: left;
-  font-size: 2rem; /* Adjusted font size */
-  font-weight: 100; /* Lighter font weight */
+}
+
+.overview-section .section-content h2 {
+  text-align: left;
+  font-size: 2rem; /* Smaller font size for the title */
+  font-weight: 100;
   color: #8d989f;
   animation: fadeIn 1s ease-in-out;
-   /* Spacing for better separation */
 }
 
-.about__content h3 {
-  text-align: left;
-  font-size: 4rem; /* Adjusted font size */
+.overview-section .section-content h3 {
+  font-size: 4rem;
   font-weight: 700;
   color: #fff;
+  margin-bottom: 4rem;
+  text-align: left;
   animation: fadeIn 1s ease-in-out;
-  margin-bottom: 2rem; /* Spacing for better separation */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Keyframe for Fade In Animation */
+/* Additional styles to improve the look of the section */
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section-content p {
+  font-size: 1.2rem;
+  color: #8d989f;
+  margin-bottom: 4rem;
+  animation: fadeIn 1.5s ease-in-out;
+  /* max-width: 1000px; */
+  margin: 0 auto;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -281,9 +290,75 @@ nav {
 }
 
 
-.about__content .section__description {
-  margin-bottom: 2rem;
+
+p {
+  margin-top: 4rem;
+  font-size: 1.2rem;
+  color: #8d989f;
+  margin-bottom: 4rem;
+  animation: fadeIn 1.5s ease-in-out;
 }
+
+/* Role Grid Layout */
+.role-grid {
+  
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.role-item {
+  background-color: #1D1836;
+  padding: 2rem;
+  border-radius: 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.icon-container {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.role-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.role-grid .role-title {
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: #ffffff;
+  text-transform: capitalize;
+}
+
+/* Hover Effects */
+.role-item:hover {
+  background-color: #030000;
+  transform: translateY(-10px);
+}
+
+.role-item:hover .role-icon {
+  transform: scale(1.1);
+}
+
+/* Keyframes for Fade In Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .service__grid {
   margin-top: 2rem;
@@ -294,7 +369,7 @@ nav {
 .service__card {
   padding: 2rem 1rem;
   text-align: center;
-  background-image: var(--gradient-2);
+  background-image: #1D1836;
   border-radius: 1rem;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -319,9 +394,11 @@ nav {
 
 /* Style the Work Experience section */
 .work-experience {
-  padding: 4rem 1rem;
-  /* background-color: #1d1d1d; */
+  background-color: #030000;
+  padding: 3rem 1rem;
+  margin-bottom: 4rem;
   color: #fff;
+  text-align: left;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -331,21 +408,27 @@ nav {
   font-weight: 100;
   color: #8d989f;
   animation: fadeIn 1s ease-in-out;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 
 
 
 .work-experience h3 {
-  text-align: left;
-  font-size: 4rem; /* Smaller font size for the title */
+  font-size: 4rem;
   font-weight: 700;
-  color: #ffff;
+  color: #fff;
+  margin-bottom: 4rem;
+  text-align: left;
   animation: fadeIn 1s ease-in-out;
-  margin-bottom: 3.5rem;
+  max-width: 1200px;
+  margin-bottom: 4rem;
+  margin: 0 auto;
 }
 
 .timeline {
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -367,7 +450,7 @@ nav {
   align-items: center;
   position: relative;
   padding: 1rem;
-  background-color: #333;
+  background-color: #1D1836;
   border-radius: 8px;
   transition: transform 0.3s ease-in-out;
 }
@@ -379,6 +462,7 @@ nav {
 .timeline-item::after {
   content: "";
   position: absolute;
+  background-color: #1D1836;
   top: 0;
   left: 50%;
   height: 100%;
@@ -401,7 +485,7 @@ nav {
 }
 
 .content {
-  background-color: #3a3a3a;
+  background-color:  #1D1836;
   padding: 2rem;
   border-radius: 8px;
   width: 100%;
@@ -545,7 +629,8 @@ nav {
 
 /* Each service card */
 .service__card {
-  background-color: #333;
+  /* Updated background-color */
+  background-color: #1D1836;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
@@ -563,13 +648,13 @@ nav {
 /* Hover effect for icons inside the service card */
 .service__card span {
   font-size: 3rem;
-  color: var(--primary-color);
+  color: #e3bf76;
   margin-bottom: 1rem;
   transition: color 0.3s ease;
 }
 
 .service__card:hover span {
-  color: var(--secondary-color);
+  color: #868686;
 }
 
 .service__card h4 {
@@ -585,7 +670,7 @@ nav {
 }
 
 .service__card p strong {
-  color: var(--primary-color);
+  color: #868686;
   font-weight: bold;
 }
 
@@ -688,7 +773,7 @@ nav {
   border-radius: 1rem; /* Rounded corners */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Modern shadow */
   transition: transform 0.3s ease-in-out, background-color 0.3s ease;
-  background-color: #2c2c2c;
+  background-color: #1D1836;
   color: #fff;
   padding: 1rem;
   display: flex;
@@ -739,7 +824,7 @@ nav {
 .portfolio__category {
   font-size: 1.1rem;
   font-weight: 500;
-  color: #ec9956;
+  color: #e3bf76;
 }
 
 .portfolio__description-text {
@@ -756,9 +841,9 @@ nav {
 
 .portfolio__tags span {
   font-size: 0.9rem;
-  background-color: #e9615e;
-  padding: 0.3rem 0.6rem;
-  border-radius: 1rem;
+  /* background-color: #e9615e; */
+  /* padding: 0; */
+  /* border-radius: 1rem; */
   color: #fff;
 }
 
