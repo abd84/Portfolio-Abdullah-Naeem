@@ -86,6 +86,7 @@ body {
   background-image: var(--gradient-1);
 }
 
+/* Base Styles */
 nav {
   position: fixed;
   isolation: isolate;
@@ -94,6 +95,11 @@ nav {
   max-width: var(--max-width);
   margin: auto;
   z-index: 9;
+  
+  padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .nav__bar {
@@ -105,30 +111,25 @@ nav {
   background-image: var(--gradient-1);
 }
 
-.nav__logo {
-  background-color: #ec9956;
-  padding: 9px 12px;
-  font-size: 1.2rem;
-}
-.nav__bar__content h3{
+.nav__bar__content h3 {
   color: #e3bf76;
 }
-.nav__bar__content h4{
+
+.nav__bar__content h4 {
   color: #f8f8f8;
 }
+
 .nav__bar a {
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--white);
 }
-/* .nav__bar span{
-  color: #FFD700; /* Light Gold */
-/* } */ */
 
 .nav__menu__btn {
   font-size: 1.5rem;
   color: var(--white);
   cursor: pointer;
+  margin-left: auto;
 }
 
 .nav__links {
@@ -163,6 +164,7 @@ nav {
   display: none;
 }
 
+/* header section */
 .header__container {
   padding-top: 8rem;
   display: grid;
@@ -174,15 +176,10 @@ nav {
 
 .header__content {
   text-align: left;
-  /* Remove the old background image */
-  /* background-image: url('/Users/abdullah/Downloads/Personal_Portfolio_28-11-23-main/assets/header.jpg.png'); */
-  /* background-size: cover; */
-  /* background-position: center; */
   padding: 2rem;
   border-radius: 1rem;
-  /* Add your textured background here */
-  background-image: url('/Users/abdullah/Downloads/Personal_Portfolio_28-11-23-main/assets/header.jpg.png'); /* <-- Use the path to your dark texture */
-  background-size: cover; /* Or 'repeat' depending on the texture */
+  background-image: url('/Users/abdullah/Downloads/Personal_Portfolio_28-11-23-main/assets/header.jpg.png');
+  background-size: cover;
   background-position: center;
 }
 
@@ -203,8 +200,6 @@ nav {
   font-weight: 500;
 }
 
-
-
 .header__content .section__description {
   margin-bottom: 2rem;
   color: var(--white);
@@ -212,7 +207,6 @@ nav {
 
 .header__image {
   position: relative;
-  isolation: isolate;
   z-index: -1;
   display: flex;
   justify-content: center;
@@ -224,6 +218,7 @@ nav {
   border-radius: 25rem;
 }
 
+/* Make the image readable */
 .header__image::after {
   position: absolute;
   content: "ABDULLAH";
@@ -250,7 +245,23 @@ nav {
   color: #8d989f;
   animation: fadeIn 1s ease-in-out;
 }
+.heading_Services h2{
+  text-align: left;
+  font-size: 2rem; /* Smaller font size for the title */
+  font-weight: 100;
+  color: #8d989f;
+  animation: fadeIn 1s ease-in-out;
+}
 
+.heading_Services h3{
+  font-size: 4rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: left;
+  animation: fadeIn 1s ease-in-out;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 .overview-section .section-content h3 {
   font-size: 4rem;
   font-weight: 700;
@@ -428,7 +439,7 @@ p {
 }
 
 .timeline {
-  margin-top: 4rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -437,11 +448,12 @@ p {
 
 .experience {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   width: 80%;
   opacity: 0;
   animation: fadeInUp 1s ease-out forwards;
   animation-delay: 0.3s;
+  max-width: 1180px;
 }
 
 .timeline-item {
@@ -495,7 +507,6 @@ p {
 .content h4 {
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
   animation: fadeInLeft 1s ease-in-out;
 }
 
@@ -553,31 +564,7 @@ p {
   }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .timeline {
-    width: 90%;
-  }
 
-  .timeline-item::after {
-    left: 0;
-    top: 50%;
-    height: 2px;
-  }
-
-  .timeline-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .logo {
-    margin-bottom: 1rem;
-  }
-
-  .content {
-    width: 100%;
-  }
-}
 
 #home {
   background-image: url('assets/header.jpg.png');
@@ -589,24 +576,6 @@ p {
 }
 
 
-.heading_Services h2 {
-  margin-top: 2rem;
-  text-align: left;
-  font-size: 2rem; /* Smaller font size for the title */
-  font-weight: 100;
-  color: #8d989f;
-  animation: fadeIn 1s ease-in-out;
-
-}
-.heading_Services h3 {
-  margin-top: 0rem;
-  text-align: left;
-  font-size: 4rem; /* Smaller font size for the title */
-  font-weight: 700;
-  color: #ffff;
-  animation: fadeIn 1s ease-in-out;
-
-}
 
 /* Service Section */
 .service__container {
@@ -714,29 +683,6 @@ p {
   }
 }
 
-@media (max-width: 768px) {
-  .service__grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
-  }
-
-  .service__card {
-    margin: 0 auto;
-    width: 90%;
-  }
-}
-
-@media (max-width: 480px) {
-  .service__grid {
-    grid-template-columns: 1fr; /* Single column for very small screens */
-  }
-}
-
-
-
-
-
-
-/* Portfolio Grid */
 /* Portfolio Grid */
 .portfolio__grid {
   margin-top: 2rem;
@@ -744,19 +690,6 @@ p {
   gap: 2rem;
   grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
 }
-
-@media (max-width: 1200px) {
-  .portfolio__grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
-  }
-}
-
-@media (max-width: 768px) {
-  .portfolio__grid {
-    grid-template-columns: 1fr; /* 1 column on mobile screens */
-  }
-}
-
 .portfolio__header h2 {
   margin-top: 1rem;
   text-align: left;
@@ -887,25 +820,6 @@ p {
 .portfolio__card:hover .portfolio__image {
   transform: scale(1.1); /* Zoom effect */
 }
-
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-  .portfolio__header h2,
-  .portfolio__header h3 {
-    font-size: 1.5rem; /* Adjust header font size on mobile */
-  }
-
-  .portfolio__card {
-    flex-direction: column; /* Stack content vertically on mobile */
-  }
-
-  .portfolio__image {
-    height: 200px; /* Ensure the images are consistently sized */
-  }
-}
-
-
-
 .contact__container {
   text-align: center;
 }
@@ -945,28 +859,305 @@ p {
   text-align: center;
 }
 
-@media (width > 576px) {
-  .service__grid {
-    grid-template-columns: repeat(2, 1fr);
+.start {
+  display: flex;              /* Make it a flex container */
+  align-items: center;        /* Vertically align items in center */
+}
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+  /* Navbar Styles */
+  nav{
+    background-color: #000000;
+    max-width: 100%;
+    margin: 0%;
+    padding: 0%;
+  }
+  .nav__bar__content{
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
   }
 
-  .portfolio__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .portfolio__banner {
-    grid-template-columns: repeat(2, 1fr);
-    text-align: left;
-  }
+.nav__menu__btn {
+  display: block; /* Show hamburger menu button on mobile */
+  margin-left: 15rem; /* Align hamburger button to the right */
 }
 
+.nav__links {
+  display: none; /* Hide links by default */
+  flex-direction: column;
+  align-items: center;
+  position: absolute; /* Position links absolutely */
+  top: 100%; /* Start the links below the navbar */
+  left: 0;
+  right: 0;
+  background-color: #000; /* Optional: background color for the dropdown */
+  padding: 1rem 0;
+  z-index: 10; /* Ensure the links appear above other elements */
+}
+
+.nav__links.open {
+  display: flex; /* Display links when the menu is open */
+}
+
+.nav__bar {
+  padding: 1rem;
+  flex-direction: row;
+}
+
+/* Styling for navbar items and content */
+.nav__bar__content {
+  text-align: left;
+  margin: 3%;
+}
+
+.nav__bar__content h3 {
+  font-size: 1.3rem; /* Adjust font size for mobile */
+}
+
+.nav__bar__content h4 {
+  font-size: 1rem; /* Adjust font size for mobile */
+}
+
+.nav__links a {
+  font-size: 1.2rem; /* Increase font size for readability on mobile */
+  padding: 0.5rem 0;
+}
+
+/* Large button styling */
+.btn__large {
+  font-size: 1.1rem; /* Make button larger on mobile */
+}
+
+ #home{
+ 
+  margin: 1rem;
+  margin-top: 4rem;
+ }
+
+  .header__image img {
+    width: 100%;  /* Ensure image takes full width on mobile */
+    max-width: 10000px;  /* Optional, you can increase this value if needed */
+  }
 
 
+.header__container {
+  padding-top: 4rem; /* Adjust padding */
+}
+
+.header__content {
+  text-align: left;
+  padding: 2rem;
+}
+
+.header__content h1 {
+  font-size: 2.5rem; /* Adjust title font size */
+}
+
+.header__content .name {
+  font-size: 3.2rem; /* Adjust name font size */
+}
+
+.header__content .title {
+  font-size: 1.3rem; /* Adjust subtitle font size */
+}
+  .role-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 equal-width columns */
+    grid-template-rows: repeat(2, auto);  /* 2 rows, height based on content */
+    gap: 1rem; /* optional: adds space between grid items */
+  }
+  
+  .overview-section .section-content h3{
+    font-size: 57px;
+  }
+  .overview-section .section-content h2{
+    font-size: 33px;
+    margin-top: 0%;
+
+  }
+  .experience{
+    max-width:410px;
+    
+  }
+   .experience .timeline-item .content .details li{
+    font-size: 16px;
+  }
+  .work-experience h2{
+    font-size: 33px;
+    margin-left: 15px;
+
+  }
+  .work-experience h3{
+    font-size: 57px;
+    margin-left: 15px;
+
+  }
+  .heading_Services h2{
+    font-size: 33px;
+    margin-left: 1rem;
 
 
+  }
+  .heading_Services h3{
+    font-size: 57px;
+    margin-left:1.2rem;
+
+    
+
+  }
+  .overview-section .section-content p{
+    font-size: 20px;}
+    .timeline-item {
+      flex-direction: column; /* Stack the content and logo vertically on smaller screens */
+      gap: 1rem; /* Add space between content and logo */
+    }
+  
+    .logo {
+      margin-left: 0; /* Remove margin for mobile */
+      align-self: flex-end; /* Align logo to the left side */
+    }
+  
+    .start {
+      display: flex;              /* Make it a flex container */
+      align-items: center;        /* Vertically align items in center */
+    }
+    .logo img {
+      width: 55px;
+      height: 55px;
+    }
+  
+    .content h4 {
+      font-size: 1.4rem; /* Reduce font size for mobile */
+    }
+  
+    .content .company {
+      font-size: 1rem; /* Reduce font size for mobile */
+    }
+  
+    .content .date {
+      font-size: 0.9rem; /* Reduce font size for mobile */
+    }
+  
+    .details li {
+      font-size: 0.9rem; /* Reduce font size for mobile */
+    }
+  
+  .header__btn {
+    text-align: center; /* Center the button on mobile */
+    margin-top: 1rem;
+  }
+
+  .header__btn button {
+    padding: 0.75rem 1.5rem; /* Adjust button padding */
+    font-size: 1rem; /* Adjust button font size */
+  }
+  .service__grid {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    gap: 20px; /* Space between cards */
+  }
+  
+  .service__card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    max-width:410px;
+  }
+  .portfolio__grid {
+    grid-template-columns: 1fr; /* 1 column per row on smaller screens */
+    margin-left: 1.3rem;
+  }
+
+  .portfolio__content {
+    text-align: left; /* Left align text */
+  }
+
+  .portfolio__title {
+    font-size: 1.2rem; /* Reduce the font size of the title */
+  }
+
+  .portfolio__description-text {
+    font-size: 0.9rem; /* Reduce font size of the description */
+    
+  }
+  .section__description{
+    text-align: left;
+  }
+  .portfolio__card{
+    max-width: 420px;
+    align-self: center;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .nav__bar__content h3 {
+    font-size: 1.2rem; /* Slightly smaller font for very small screens */
+  }
+
+  .nav__bar__content h4 {
+    font-size: 0.9rem; /* Smaller title font */
+  }
+
+  .nav__links a {
+    font-size: 1rem; /* Reduce font size further on very small screens */
+  }
+
+  .btn__large {
+    padding: 0.6rem 1.2rem; /* Adjust button padding for smaller screens */
+  }
+  .header__container {
+    padding-top: 4rem; /* Adjust top padding for very small screens */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    isolation: isolate;
+  }
+
+  .header__content h1 {
+    font-size: 2rem; /* Further reduce title font size */
+  }
+
+  .header__content .name {
+    font-size: 2.2rem; /* Further adjust name font size */
+  }
+
+  .header__content h1 {
+    margin-bottom: 1rem;
+    text-align: left;
+    margin-bottom: 0rem;
+  }
+  
+  .header__content .name {
+    font-size: 3rem;
+    font-weight: 500;
+  }
+  
+  .header__content .title {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  .header__btn button {
+    font-size: 0.9rem; /* Adjust button font size for very small screens */
+    padding: 0.6rem 1.2rem; /* Adjust button padding */
+  }
+   .header__image {
+    position: relative;
+    z-index: -1;
+    display: flex;
+    justify-content: flex-end;  /* Align image to the left */
+  }
+  }
+  
 
 
-@media (width > 768px) {
+@media (width > 1000px) {
   nav {
     padding: 2rem 1rem;
     position: static;
@@ -1036,15 +1227,7 @@ p {
     margin-inline-start: unset;
   }
 
-  .about__container {
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-  }
-
-  .about__content,
-  .about__content :is(.section__header, .section__description) {
-    text-align: left;
-  }
+  
 
   .service__grid {
     grid-template-columns: repeat(3, 1fr);
