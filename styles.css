@@ -168,7 +168,7 @@ nav {
 .header__container {
   position: relative; /* Needed for positioning the overlay pseudo-element */
   /* Apply the main background image here */
-  background-image: url('/Users/abdullah/Documents/GitHub/Portfolio-Abdullah-Naeem/assets/header.jpg.png'); /* <-- Use the path to your desired background */
+  background-image: url('assets/header.jpg.png'); /* <-- Use the path to your desired background */
   background-size: cover; /* Ensure the background covers the container */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Prevent background from repeating */
