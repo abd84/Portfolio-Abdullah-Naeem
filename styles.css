@@ -166,67 +166,189 @@ nav {
 
 /* header section */
 .header__container {
-  padding-top: 8rem;
+  position: relative; /* Needed for positioning the overlay pseudo-element */
+  /* Apply the main background image here */
+  background-image: url('/Users/abdullah/Documents/GitHub/Portfolio-Abdullah-Naeem/assets/header.jpg.png'); /* <-- Use the path to your desired background */
+  background-size: cover; /* Ensure the background covers the container */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent background from repeating */
+  /* Optional: background-attachment: fixed; for a parallax effect */
+
+  /* Use Grid for the side-by-side layout of the foreground content */
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 2rem;
-  isolation: isolate;
+  grid-template-columns: 1fr 1fr; /* Image on left (1st col), Content on right (2nd col) */
+  align-items: center; /* Vertically aligns items in the center */
+  gap: 2rem; /* Space between the image and content columns */
+  padding: 8rem 2rem 4rem; /* Add padding inside the container (top, sides, bottom) */
+  overflow: hidden; /* Good practice to prevent content bleed */
+  min-height: 100vh; /* Optional: Make the header at least the height of the viewport */
+}
+
+/* Add an overlay to make the background image less distracting and text more readable */
+.header__container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay (adjust color and opacity) */
+  z-index: 1; /* Place this overlay between the background (default z-index) and the content (z-index 2) */
+}
+
+.header__image,
+.header__content {
+  position: relative; /* Needed for z-index to work and be above the overlay */
+  z-index: 2; /* Place these foreground elements above the overlay */
+  /* Existing styles for layout and appearance within their grid cells */
 }
 
 .header__content {
+  /* Keep content-specific styles */
   text-align: left;
-  padding: 2rem;
+  padding: 2rem; /* Add padding around the content */
+  /* Optional: Add a background color/card style here if you want the text on a distinct box,
+     otherwise it sits directly on the overlay/background */
+  /* background-color: rgba(255, 255, 255, 0.8); */
   border-radius: 1rem;
-  background-image: url('/Users/abdullah/Downloads/Personal_Portfolio_28-11-23-main/assets/header.jpg.png');
-  background-size: cover;
-  background-position: center;
 }
-
 
 .header__content h1 {
   margin-bottom: 1rem;
   text-align: left;
-  margin-bottom: 0rem;
 }
 
 .header__content .name {
   font-size: 5rem;
   font-weight: 700;
+  /* color: inherit; /* Or set a specific color for text */
+}
+
+.header__content .header__btn{
+  text-align: left;
 }
 
 .header__content .title {
   font-size: 2rem;
   font-weight: 500;
+   /* color: inherit; /* Or set a specific color for text */
 }
 
 .header__content .section__description {
   margin-bottom: 2rem;
-  color: var(--white);
+  color: var(--white); /* Assuming --white works on top of the overlay */
 }
 
 .header__image {
-  position: relative;
-  z-index: -1;
-  display: flex;
-  justify-content: center;
+  display: flex; /* Use flex to center the image within its grid cell */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  /* z-index: 2; /* Already set above */
+  position: relative; /* Keep relative for the ::after element positioning */
 }
 
 .header__image img {
-  max-width: 450px;
-  margin-inline: auto;
-  border-radius: 25rem;
+  max-width: 450px; /* Limit the max size of the image */
+  width: 100%; /* Make image responsive within its max-width limit */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove potential extra space below img */
+  border-radius: 25rem; /* Makes the image round/oval */
 }
 
-/* Make the image readable */
+/* The "ABDULLAH" text overlaying/near the foreground image */
 .header__image::after {
-  position: absolute;
   content: "ABDULLAH";
+  position: absolute; /* Position relative to .header__image */
   letter-spacing: 1.5rem;
   opacity: 0.5;
+  color: white; /* Set color for the text */
+  /* Adjust positioning relative to the image */
   right: 1rem;
   top: 50%;
   transform: translate(50%, -50%) rotate(90deg);
+  z-index: 3; /* Ensure this text is on top of the foreground image if needed */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 992px) { /* Adjust breakpoint as needed for layout change */
+  .header__container {
+      grid-template-columns: 1fr; /* Stack items vertically on smaller screens */
+      gap: 3rem; /* Add more space when stacked */
+      padding-top: 4rem; /* Adjust top padding */
+      min-height: auto; /* Remove min-height on smaller screens if stacked */
+      /* Ensure alignment is centered for stacked items if desired */
+      align-items: center; /* Still good to keep */
+      justify-items: center; /* Also center items horizontally in grid cell */
+  }
+
+  /* Hide the header image on mobile and smaller screens */
+  .header__image {
+      display: none;
+  }
+
+  /* Use the 'order' property to change stacking order on mobile */
+  .header__content {
+      order: 1; /* Display text content first */
+      text-align: center; /* Center text when stacked */
+      padding: 1rem; /* Adjust padding */
+       /* Remove or adjust padding/margins here if needed for the stacked view */
+       padding: 0; /* Example: remove padding from content div when stacked if it looks better */
+  }
+
+  /* Since the image is hidden, there's no need to set order for it */
+  /* .header__image {
+      order: 2;
+  } */
+
+
+  .header__content h1 {
+      margin-bottom: 0.5rem; /* Adjust spacing */
+  }
+
+  .header__content .header__btn{
+      text-align: center; /* Center the button */
+  }
+
+  .header__content .name {
+      font-size: 3.5rem; /* Adjust font size */
+  }
+  .header__content .title {
+      font-size: 1.8rem; /* Adjust font size */
+  }
+
+  /* No need to style img within header__image if header__image is hidden */
+  /* .header__image img {
+      max-width: 200px;
+      margin-inline: auto;
+  } */
+
+  /* Hide or reposition the pseudo-element on small screens if it causes issues */
+  .header__image::after {
+       display: none; /* Example: Hide it on small screens */
+      /* Or reposition and restyle it for the mobile layout if desired */
+  }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 576px) {
+  .header__container {
+      padding: 3rem 1rem 2rem; /* Adjust padding */
+      gap: 2rem;
+  }
+   .header__content .name {
+      font-size: 2.5rem;
+  }
+  .header__content .title {
+      font-size: 1.4rem;
+  }
+   .header__content {
+       padding: 0 0.5rem; /* Example: Adjust padding */
+   }
+    /* No need to style img within header__image if header__image is hidden */
+    /* .header__image img {
+      max-width: 250px;
+  } */
 }
 
 /* overview Section Layout */
@@ -402,44 +524,40 @@ p {
   line-height: 2rem;
 }
 
-
 /* Style the Work Experience section */
 .work-experience {
   background-color: #030000;
-  padding: 3rem 1rem;
-  margin-bottom: 4rem;
+  padding: 1.5rem 1rem; /* Reduced top/bottom padding */
+  margin-bottom: 2rem; /* Reduced bottom margin */
   color: #fff;
   text-align: left;
   font-family: "Montserrat", sans-serif;
 }
 
-.work-experience h2{
+.work-experience h2 {
   text-align: left;
-  font-size: 2rem; /* Smaller font size for the title */
+  font-size: 1.8rem; /* Slightly smaller font size for the title */
   font-weight: 100;
   color: #8d989f;
   animation: fadeIn 1s ease-in-out;
   max-width: 1200px;
   margin: 0 auto;
+
 }
 
-
-
-
 .work-experience h3 {
-  font-size: 4rem;
+  font-size: 3rem; /* Reduced font size */
   font-weight: 700;
   color: #fff;
-  margin-bottom: 4rem;
   text-align: left;
   animation: fadeIn 1s ease-in-out;
   max-width: 1200px;
-  margin-bottom: 4rem;
   margin: 0 auto;
+
 }
 
 .timeline {
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -448,12 +566,12 @@ p {
 
 .experience {
   position: relative;
-  margin-bottom: 2rem;
-  width: 80%;
+  margin-bottom: 1.5rem; /* Reduced bottom margin */
+  width: 70%; /* Reduced width */
+  max-width: 900px; /* Reduced max-width */
   opacity: 0;
   animation: fadeInUp 1s ease-out forwards;
   animation-delay: 0.3s;
-  max-width: 1180px;
 }
 
 .timeline-item {
@@ -461,14 +579,14 @@ p {
   flex-direction: row;
   align-items: center;
   position: relative;
-  padding: 1rem;
+  padding: 0.8rem; /* Reduced padding */
   background-color: #1D1836;
   border-radius: 8px;
   transition: transform 0.3s ease-in-out;
 }
 
 .timeline-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.03); /* Slightly reduced scale on hover */
 }
 
 .timeline-item::after {
@@ -483,53 +601,58 @@ p {
 }
 
 .logo {
-  padding: 0; /* Remove any padding around the logo */
-  border-radius: 100%; /* Keep the circular shape if needed */
-  margin-right: 2rem;
- 
+  padding: 0;
+  border-radius: 100%;
+  margin-right: 1rem; /* Reduced space to the right of the logo */
 }
 
 .logo img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%; /* If you still want the image to be circular */
-  object-fit: contain; /* Ensure the image fits properly inside the circle if needed */
+  width: 60px; /* Adjusted logo size */
+  height: 60px; /* Adjusted logo size */
+  border-radius: 50%;
+  object-fit: contain;
 }
 
 .content {
-  background-color:  #1D1836;
-  padding: 2rem;
+  background-color: #1D1836;
+  padding: 0.8rem; /* Adjusted padding */
   border-radius: 8px;
   width: 100%;
   color: #fff;
 }
 
 .content h4 {
-  font-size: 1.5rem;
+  font-size: 1.4rem; /* Slightly reduced font size */
   font-weight: 700;
   animation: fadeInLeft 1s ease-in-out;
+  margin-top: 0; /* Removed top margin */
+  margin-bottom: 0.5rem; /* Adjusted bottom margin */
 }
 
 .content .company {
-  font-size: 1.2rem;
+  font-size: 1.1rem; /* Slightly reduced font size */
   font-weight: 600;
+  margin-top: 0.09rem; /* Removed top margin */
+  margin-bottom: 0.4rem; /* Adjusted bottom margin */
 }
 
 .content .date {
-  font-size: 1rem;
+  font-size: 0.9rem; /* Slightly reduced font size */
   font-style: italic;
-  margin: 0.5rem 0;
+  margin: 0 0 0.5rem 0; /* Adjusted margin */
 }
 
 .details {
   list-style: none;
-  padding-left: 1.5rem;
+  padding-left: 1.2rem; /* Reduced left padding */
+  margin-top: 0.5rem; /* Adjusted top margin */
+  margin-bottom: 0; /* Removed bottom margin */
 }
 
 .details li {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: 0.5rem;
+  font-size: 0.95rem; /* Slightly reduced font size */
+  line-height: 1.4; /* Slightly reduced line height */
+  margin-bottom: 0.4rem; /* Reduced bottom margin */
 }
 
 /* Keyframe Animations */
@@ -588,7 +711,7 @@ p {
 .section__header {
   text-align: center;
   font-weight: 700;
-  color: var(--primary-color);
+  color: #ffff;
   font-size: 3rem;
   letter-spacing: 1px;
   margin-bottom: 2rem;
@@ -697,6 +820,8 @@ p {
   font-weight: 100;
   color: #8d989f;
   animation: fadeIn 1s ease-in-out;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .portfolio__header h3 {
@@ -706,6 +831,10 @@ p {
   font-weight: 700;
   color: #fff;
   animation: fadeIn 1s ease-in-out;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  
 }
 
 .portfolio__card {
@@ -1098,31 +1227,407 @@ p {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     max-width:410px;
   }
+  /* Default styles for larger screens (and will be overridden by the media query for mobile) */
+.portfolio__card {
+  padding: 1rem; /* Adjust padding as needed for larger screens */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.portfolio__content {
+  padding: 0.5rem 0; /* Adjust padding as needed for larger screens */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio__title {
+  margin-top: 0.5rem; /* Adjust margin as needed for larger screens */
+  margin-bottom: 0.5rem; /* Adjust margin as needed for larger screens */
+  line-height: 1.2;
+}
+
+.portfolio__category {
+  margin-top: 0.2rem; /* Adjust margin as needed for larger screens */
+  margin-bottom: 0.5rem; /* Adjust margin as needed for larger screens */
+  font-size: 0.9rem;
+}
+
+.portfolio__description-text {
+  margin-top: 0.5rem; /* Adjust margin as needed for larger screens */
+  margin-bottom: 1rem; /* Adjust margin as needed for larger screens */
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.portfolio__tags {
+  margin-top: 0.5rem; /* Adjust margin as needed for larger screens */
+}
+
+.portfolio__tags span {
+  margin-right: 0.5rem; /* Adjust margin as needed for larger screens */
+}
+
+
+/* Media Query for Mobile (max-width: 768px) */
+@media (max-width: 768px) {
   .portfolio__grid {
-    grid-template-columns: 1fr; /* 1 column per row on smaller screens */
-    margin-left: 1.3rem;
+      grid-template-columns: 1fr; /* 1 column per row on smaller screens */
+      margin-left: 1.3rem;
   }
 
   .portfolio__content {
-    text-align: left; /* Left align text */
+      text-align: left; /* Left align text */
+       /* If you had specific padding/margins for mobile content, define them here to override the default */
+       /* padding: ...; */
   }
 
   .portfolio__title {
-    font-size: 1.2rem; /* Reduce the font size of the title */
+      font-size: 1.2rem; /* Reduce the font size of the title */
+       /* If you had specific margins for mobile title, define them here */
+       /* margin: ...; */
   }
 
   .portfolio__description-text {
-    font-size: 0.9rem; /* Reduce font size of the description */
-    
+      font-size: 0.9rem; /* Reduce font size of the description */
+      /* If you had specific margins for mobile description, define them here */
+      /* margin: ...; */
   }
-  .section__description{
+
+  .section__description {
+      text-align: left;
+  }
+
+  .portfolio__card {
+      max-width: 350px;
+      align-self: center;
+      /* If you had specific padding for mobile card, define it here */
+      /* padding: ...; */
+  }
+
+   /* If you had specific styles for category, tags, or spans on mobile, define them here */
+}
+  
+}
+
+
+
+/* General Styles for the section */
+/* ======================================== */
+/* Certifications Section           */
+/* ======================================== */
+
+#certifications {
+  padding: 100px 20px;
+  text-align: center;
+  background-color: #030000;
+  color: #f0f0f0;
+  /* font-family: "Montserrat", sans-serif; */
+  margin-bottom: 2rem;
+  overflow: hidden;
+text-align: left;
+}
+
+#certifications .container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px; /* Padding inside container */
+}
+
+#certifications h2 {
+  font-size: 4em;
+  margin-bottom: 3rem;
+  color: #ffffff;
+  position: relative;
+  /* font-family: "Montserrat"; */
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: left;
+  display: inline-block;
+  letter-spacing: 2px;
+}
+
+/* Underline animation */
+#certifications h2::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  bottom: -15px;
+  left: 0;
+  background-color: #302950;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.5s ease-out;
+}
+
+#certifications h2:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* List Container */
+.certification-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* Default Gap (applied on Desktop > 1000px, overridden below) */
+  gap: 60px 40px; /* Vertical gap, Horizontal gap */
+}
+
+/* Individual Item Styling */
+.certification-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  perspective: 1000px;
+  box-sizing: border-box; /* Crucial for width calculations */
+
+  /* Base width - overridden by media queries */
+  /* Let's default to desktop width calculation here */
+  /* Width for 5 items, 40px horizontal gap: calc(20% - (4*40px/5)) = calc(20% - 32px) */
+  width: calc(20% - 32px);
+
+  /* Entry animation */
+  opacity: 0;
+  transform: translateY(50px) rotateY(30deg);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.certification-item.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotateY(0deg);
+}
+
+/* Icon Styling (Base - Desktop) */
+.certification-item img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 18px;
+  transition: transform 0.4s ease-in-out, filter 0.4s ease-in-out;
+  filter: brightness(0.6);
+  will-change: transform, filter;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Text Styling (Base - Desktop) */
+.certification-item p {
+  font-size: 1.2em;
+  color: #b0b0b0;
+  transition: color 0.4s ease-in-out, transform 0.4s ease-in-out; /* Added transform transition */
+  text-align: center;
+  word-break: break-word; /* Helps prevent overflow */
+  hyphens: auto;         /* Helps with text wrapping */
+}
+
+/* Animations & Hover Effects */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.certification-item:hover img {
+  transform: translateY(-8px) rotateY(15deg) scale(1.1);
+  filter: brightness(1.2);
+  animation-play-state: paused;
+}
+
+.certification-item:hover p {
+  color: #302950; /* Use a theme color, corrected double semicolon */
+  transform: translateY(-5px);
+}
+
+/* Hover Glow */
+.certification-item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, #302950 0%, transparent 70%);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.certification-item:hover::before {
+  width: 150px; /* Size of the glow */
+  height: 150px;
+  opacity: 0.3; /* Opacity of the glow */
+}
+
+/* --- Responsive Design for Certifications --- */
+
+/* Tablet (e.g., > 768px and <= 1000px) - Adjusting to 4 items */
+@media (min-width: 769px) and (max-width: 1000px) {
+  #certifications {
+      padding: 80px 20px;
+  }
+  #certifications h2 {
+      font-size: 2.5em;
+      margin-bottom: 60px;
+  }
+  .certification-list {
+      /* Adjust gap for tablet */
+      gap: 50px 30px; /* Vertical gap, Horizontal gap */
+  }
+  .certification-item {
+      /* 4 items, 30px horizontal gap: calc(25% - (3*30px/4)) = calc(25% - 22.5px) */
+      width: calc(25% - 22.5px);
+  }
+  .certification-item img {
+      width: 90px; /* Tablet icon size */
+  }
+  .certification-item p {
+      font-size: 1.1em; /* Tablet text size */
+  }
+}
+
+/* Mobile (<= 768px) - Adjusting to 2 items */
+@media (max-width: 768px) {
+  #certifications {
+      padding: 60px 15px;
+  }
+  #certifications h2 {
+      font-size: 2em;
+      margin-bottom: 50px;
+  }
+  .certification-list {
+      /* Mobile gap */
+      gap: 40px 20px; /* Vertical gap, Horizontal gap */
+  }
+  .certification-item {
+      /* 2 items, 20px horizontal gap: calc(50% - (1*20px/2)) = calc(50% - 10px) */
+      width: calc(50% - 10px);
+  }
+  .certification-item img {
+      width: 80px; /* Mobile icon size */
+  }
+  .certification-item p {
+      font-size: 1em; /* Mobile text size (adjust from your 1.1em if needed) */
+  }
+}
+
+/* ======================================== */
+/* Other Desktop Styles (> 1000px)     */
+/* (Unrelated to Certifications section)  */
+/* ======================================== */
+
+/* Note: Using min-width: 1001px for consistency */
+@media (min-width: 1001px) {
+  /* Styles for nav, header, service, portfolio etc. */
+  /* These styles were provided but seem unrelated to #certifications */
+  /* It's generally better to keep styles for different components separate */
+
+  nav {
+    padding: 2rem 1rem;
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav__bar {
+    padding: 0;
+    background-image: none;
+  }
+
+  .nav__menu__btn {
+    display: none;
+  }
+
+  .nav__links {
+    padding: 0;
+    width: unset;
+    position: static;
+    transform: none;
+    flex-direction: row;
+    background-image: none;
+  }
+
+  .nav__links a:hover {
+    /* Make sure --secondary-color is defined elsewhere */
+    color: var(--secondary-color);
+  }
+
+  .nav__links li:last-child {
+    display: none;
+  }
+
+  .btn__large {
+    display: flex;
+  }
+
+  .header__container {
+    padding-top: 5rem;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+  }
+
+  .header__image {
+    grid-area: 1/3/2/5;
+  }
+
+  .header__image img {
+    margin-inline-start: unset;
+  }
+
+  .header__content {
+    grid-area: 1/1/2/4;
     text-align: left;
   }
-  .portfolio__card{
-    max-width: 420px;
-    align-self: center;
+
+  .header__content h1 {
+    font-size: 6rem;
+    line-height: 6rem;
+    text-align: left; /* Already set in parent, maybe redundant */
   }
-  
+
+  .header__content .section__description {
+    text-align: left;
+    margin-inline-start: unset;
+  }
+
+  .service__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .portfolio__container :is(.section__header, .section__description) {
+    text-align: left;
+    margin-inline-start: unset;
+  }
+
+  .portfolio__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .portfolio__banner {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Optional: Add a breakpoint for very small screens if needed */
+@media (max-width: 480px) {
+    .certification-list {
+        gap: 30px 15px; /* Smaller gap */
+    }
+    .certification-item {
+        /* 2 items, 15px horizontal gap: calc(50% - 7.5px) */
+        width: calc(50% - 7.5px);
+    }
+     .certification-item img {
+        width: 65px; /* Smaller icons */
+    }
+    .certification-item p {
+      font-size: 0.9em; /* Smaller text */
+    }
 }
 
 
@@ -1201,17 +1706,70 @@ p {
   .service__grid {
     grid-template-columns: repeat(3, 1fr);
   }
+  .service__card{
+    padding: 1rem; /* Example: reduce padding from default */
+    display: flex; /* Use flexbox for better control over content spacing */
+    flex-direction: column; /* Stack content vertically */
+    height: 100%; /* Ensure cards in a grid have equal height if necessary */
+}
+.service__card h4{
+  margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
 
-  .portfolio__container :is(.section__header, .section__description) {
-    text-align: left;
-    margin-inline-start: unset;
-  }
+  
 
-  .portfolio__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .portfolio__card {
+    /* Adjust padding around the card content if needed */
+    padding: 1rem; /* Example: reduce padding from default */
+    display: flex; /* Use flexbox for better control over content spacing */
+    flex-direction: column; /* Stack content vertically */
+    height: 100%; /* Ensure cards in a grid have equal height if necessary */
+}
 
-  .portfolio__banner {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.portfolio__content {
+    /* Adjust padding within the content area if needed */
+    padding: 0.5rem 0; /* Example: reduce top/bottom padding, keep left/right */
+    flex-grow: 1; /* Allow content to take up remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio__title {
+    /* Reduce top and bottom margin for the title */
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2; /* Adjust line height if needed */
+}
+
+.portfolio__category {
+    /* Reduce top and bottom margin for the category */
+    margin-top: 0.2rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem; /* Optionally reduce font size */
+}
+
+.portfolio__description-text {
+    /* Reduce top and bottom margin for the description */
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+    line-height: 1.4; /* Adjust line height for readability */
+    flex-grow: 1; /* Allow description to take up available space */
+}
+
+.portfolio__tags {
+    /* Reduce top margin for the tags container */
+    margin-top: 0.1rem;
+    /* Add some space between the tags and the description if needed */
+}
+
+.portfolio__tags span {
+    /* Add some margin between individual tags */
+    margin-right: 0.5rem;
+    /* Potentially reduce padding on the spans if they have it */
+    /* padding: 0.2rem 0.5rem; */
+}
+
+
 }
